@@ -27,14 +27,68 @@
 #
 class Baseball
     def initialize
+        @int_score = [0,0]
+        @bases = [0, 0, 0, 0]
     end    
     # A public method accepting the result of an at-bat
     # @param {string} entry - The result of an at-bat 
     # Acceptable values: ('single', 'double', 'triple', 'homerun' or 'out') 
     def addEntry(entry)
+        out_count = 0 
+        case entry
+        when 'homerun'
+            homerun
+
+
+
     end
+
+
+    #methods to change the position of @bases 
+    def single
+        @bases.each_with_index do |base, index|
+            if base == 1
+                base_save = index
+                @bases = [0, 0, 0, 0]
+                @bases[base_save + 1]
+            else base == 0
+                @bases = [1, 0, 0, 0]
+            end
+            return @bases
+    end
+    def double
+        @bases.each_with_index do |base, index|
+            if base == 1
+                base_save=index
+                @bases = [0, 0, 0, 0]
+                @bases[base_save + 2]
+            else base == 0
+                @bases = [0, 1, 0, 0]
+            end
+            return @bases
+    end
+    def triple           
+        @bases.each_with_index do |base, index|
+            if base == 1
+                base_save = index
+                @bases = [0, 0, 0, 0]
+                @bases[base_save + 3]
+            else base == 0
+                @bases = [0, 0, 1, 0]
+            end
+            return @bases
+    end
+    def homerun 
+        @bases.each {|base| if base ==1}
+            return @bases = [0, 0, 0, 0]
+    end
+    def out
+        @bases = [0, 0, 0, 0]
+
+
     # A public method returning the current score
     # Format: "Home: [HOME_SCORE] Away: [AWAY_SCORE]"
     def to_s
+        "Home: #{@int_score[0]} Away: #{@int_score[1]}"        
     end
 end
